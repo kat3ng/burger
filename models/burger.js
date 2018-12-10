@@ -6,6 +6,20 @@
 
 const orm = require('../config/orm');
 
-orm.selectAll("burgers");
+const burger = {
+    select: (callback) => {
+        orm.selectAll("burgers");
+        callback(result);
+    },
+    create: (values, callback) => {
+        orm.insertOne("burgers", values, callback);
+        callback(result);
+    },
+    update: (values, callback) => {
+        orm.updateOne("burgers", values, callback);
+        callback(result);
+    }
+}
 
-orm.insertOne("burgers", "burger_name", "devoured");
+
+module.exports = burger;

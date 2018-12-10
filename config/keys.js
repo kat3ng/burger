@@ -5,4 +5,4 @@ exports.server = {
     secret: process.env.SERVER_SECRET
 };
 
-module.exports =
+module.exports = server;
