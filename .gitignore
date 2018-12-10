@@ -59,3 +59,6 @@ typings/
 
 # next.js build output
 .next
+
+# dont track DS_Store - applicable to mac users
+.DS_Store/
