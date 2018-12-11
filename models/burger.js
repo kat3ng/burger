@@ -1,9 +1,3 @@
-// MODEL >> DATA >>DATABASE
-
-//RESPONSIBILITY
-
-// to abstract the interaction away from the developer and server as a wrapper and convenience method
-
 const orm = require('../config/orm');
 
 const burger = {
