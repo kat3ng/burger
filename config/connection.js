@@ -1,12 +1,7 @@
 // REQUIRE MYSQL
 const mysql = require('mysql');
-// REQUIRE DOTENV
-require("dotenv").config();
 
-// REQUIRE PWDS
-// const keys = require("./keys.js");
-// let serverKeys = (keys.server);
-
+// CONNECT TO THE DATABASE
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 8889,
@@ -16,7 +11,7 @@ const connection = mysql.createConnection({
 });
 
 
-connection.connect(function (err) {
+connection.connect((err) => {
     if (err) {
         console.error("error connecting: " + err.stack);
         return;

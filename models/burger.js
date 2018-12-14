@@ -1,17 +1,26 @@
 const orm = require('../config/orm');
 
 const burger = {
-    select: (callback) => {
-        orm.selectAll("burgers");
-        callback(result);
+    select: (cb) => {
+        orm.select("burgers", (results) => {
+            cb(results);
+        });
     },
-    create: (values, callback) => {
-        orm.insertOne("burgers", values, callback);
-        callback(result);
+    create: (column, values, cb) => {
+        orm.create("burgers", column, values, (results) => {
+            cb(results);
+        });
     },
-    update: (values, callback) => {
-        orm.updateOne("burgers", values, callback);
-        callback(result);
+    update: (values, status, cb) => {
+        orm.update("burgers", status, values, (results) => {
+            cb(results);
+        });
+    },
+
+    delete: (status, cb) => {
+        orm.delete("burgers", status, (results) => {
+            cb(results);
+        });
     }
 }
 

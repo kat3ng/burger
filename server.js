@@ -1,12 +1,11 @@
 const express = require("express");
 const orm = require('./config/orm');
 
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 
-const PORT = process.env.PORT || 3000;
-
-//display static methods
+//display static content from "public" directory in the application directory
 app.use(express.static("public"));
 
 // Parse application body as JSON

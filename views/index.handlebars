@@ -1,15 +1,12 @@
 <header>
-    <h1 id="header">Bob's Burgers</h1>
+    <h1 id="header">Eat Bob's Burgers</h1>
+    <br>
+
+    <h2 class="sub-header">Delicious and Nutritious</h2>
     <br>
     <div id="bob-pic">
-        <img style="width:600px;height:400px;" src="/assets/img/bobwburger.png" alt="bob-with-burger" />
+        <img style="width:400px;height:250px;" src="/assets/img/bobwburger.png" alt="bob-with-burger" />
     </div>
-    <br>
-    <h2 class="sub-header">Delicious and Nutritious </h2>
-    <br>
-    <h3 class="sub-header em">for a burger...</h3>
-    <br>
-    <br>
 </header>
 
 
@@ -21,23 +18,26 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3" id="col-left">
-            <div class="sub-header">Available Burgers!</div>
+            <h2 class="sub-header">Available Burgers</h2>
 
             <ul>
-                {{#each Burger}}
-                <p>Burger Name: {{this.burger_name}}
-                </p>
-                <p></p>
+                {{#each burger}}
+                {{#unless devoured}}
+                {{> burgers/burger-block devoured=true}}
+                {{/unless}}
                 {{/each}}
             </ul>
 
         </div>
         <div class="col-md-3" id="col-right">
             <div class="col-md-3"></div>
-            <div class="sub-header">Devoured Burgers!</div>
+            <h2 class="sub-header">Devoured Burgers!</h2>
 
             <ul>
-                {{#each burger-status}}
+                {{#each burger}}
+                {{#if devoured}}
+                {{> burgers/burger-block devoured=false}}
+                {{/if}}
                 {{/each}}
             </ul>
         </div>
@@ -46,18 +46,19 @@
 
     <h2 class="sub-header">Add Your Burger</h2>
     <form class="create-form">
+
         <div class="form-group sub-header">
             <label for="burger-name">Burger Name:</label>
             <input type="text" id="burger-name" name="burger-name">
         </div>
-        <div class="form-group">
 
+        <div class="form-group">
             <label for="burger-status" class="sub-header">Burger Status</label>
             <br>
-            <br>
+
             <input type="radio" name="available" value="1" checked class="sub-header"> Available!<br>
 
-            <input type="radio" name="devoured" value="0" class="sub-header"> DEVOURED!
+            <input type="radio" name="devoured" value="0" class="sub-header"> Devoured!
         </div>
 
         <button type="submit">Add a Burger</button>

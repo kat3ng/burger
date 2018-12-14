@@ -1,34 +1,60 @@
-const connection = require('./connection');
+const connection = require('./connection.js');
 // const server = require("./keys")
 
 let orm = {
-    selectAll: (table) => {
+    select: (table, cb) => {
         let query = `SELECT * FROM ??`
 
-        connection.query(query, [table], (err, result) => {
-            if (err) throw err;
-            console.log(result);
+        connection.query(query, [table], (err, results) => {
+            if (err) {
+                throw err;
+            }
+            cb(results);
             console.log(`Displaying all burgers, captain...`)
         });
     },
 
-    insertOne: (table, column, value) => {
+    create: (table, column, value, cb) => {
         let insertQuery = `INSERT INTO ?? (??) VALUES(?)`
 
-        connection.query(insertQuery, [table, column, value]);
+        connection.query(insertQuery, [table, column, value], (err, results) => {
+            if (err) {
+                throw err;
+            }
+            cb(results);
+        });
         console.log(`Adding a burger to the database, captain...`)
     },
 
-    updateOne: (table, column, columnValue, id, value) => {
+    update: (table, column, columnValue, id, value, cb) => {
         let updateQuery = `UPDATE ?? SET ?? = ? WHERE ?? = ?`
 
-        connection.query(updateQuery, [table, column, columnValue, id, value]);
+        connection.query(updateQuery, [table, column, columnValue, id, value], (err, results) => {
+            if (err) {
+                throw err;
+            }
+            cb(results);
+        });
         console.log(`Updating burgers_db for you, captain...`)
+    },
+
+    delete: (table, column, value, cb) => {
+        let deleteQuery = `DELETE FROM ?? WHERE ?? = ?`
+
+        connection.query(deleteQuery, [table, column, id, value], (err, results) => {
+            if (err) {
+                throw err;
+            }
+            cb(results);
+        });
+        console.log(`Activating delete sequence, captain...`)
     }
 }
 
-// orm.selectAll("burgers");
-// orm.insertOne("burgers", "burger_name", "Quarter Pounder with Cheese", "devoured", "TRUE");
-// orm.updateOne("burgers", "burger_name", "McRibs", "id", "11");
+
+
+// select("burgers");
+// orm.create("burgers", "burger_name", "Whammy", "devoured", "TRUE");
+// orm.update("burgers", "burger_name", "McRibs", "id", "11");
 
 module.exports = orm;
