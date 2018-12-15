@@ -11,8 +11,8 @@ const burger = {
             cb(results);
         });
     },
-    update: (values, status, cb) => {
-        orm.update("burgers", status, values, (results) => {
+    update: (column, newVal, whereCol, whereVal, cb) => {
+        orm.update("burgers", column, newVal, whereCol, whereVal, (results) => {
             cb(results);
         });
     },

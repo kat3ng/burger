@@ -3,9 +3,9 @@ console.log(`ORM, ready for duty...`);
 const connection = require('./connection.js');
 // const server = require("./keys")
 
-let orm = {
+const orm = {
     select: (table) => {
-        let query = `SELECT * FROM ??`
+        let query = `SELECT * FROM ??`;
 
         connection.query(query, [table], (err, results) => {
             if (err) {
@@ -28,10 +28,10 @@ let orm = {
         });
     },
 
-    update: (table, column, columnValue, id, value) => {
+    update: (table, column, newVal, whereCol, whereVal) => {
         let updateQuery = `UPDATE ?? SET ?? = ? WHERE ?? = ?`
 
-        connection.query(updateQuery, [table, column, columnValue, id, value], (err, result) => {
+        connection.query(updateQuery, [table, column, newVal, whereCol, whereVal], (err, result) => {
             if (err) {
                 throw err;
             }

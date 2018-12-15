@@ -12,6 +12,8 @@ if (process.env.JAWSDB_URL) {
         host: "localhost",
         user: process.env.SERVER_ID,
         password: process.env.SERVER_SECRET,
+        port: 8889,
+        socket: "Applications/MAMP/tmp/mysql.sock",
         database: "burger_db"
     })
 }

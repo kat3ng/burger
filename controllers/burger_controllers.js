@@ -1,9 +1,9 @@
 console.log(`This is burger-controller, ready for duty...`)
 
 const express = require("express");
-const burger = require("../models/burger");
 const router = express.Router();
 
+const burger = require("../models/burger");
 
 // create all routes and set up logic within them
 router.get("/", (req, res) => {
@@ -17,32 +17,26 @@ router.get("/", (req, res) => {
 });
 
 router.post("/api/burger", (req, res) => {
-    burger.create([
-        "burgers", "burger-name", "TRUE"
-    ], [
-        req.body.burger, req.body.devoured
-    ], (results) => {
-        res.json({
-            id: results.insertID
-        });
-        console.log(`ping! - create`);
-    });
+    let newBurger = req.body.name;
+
+    burger.create("burger_name", newBurger, (result) => {
+        if (result.affectedRows === 0) {
+            return res.status(404).end();
+        }
+        res.status(200).end();
+    })
 });
 
 router.put("/api/burger/:id", (req, res) => {
-    let status = `id = ${req.params.id}`;
-
+    let status = Boolean(req.body.devoured);
     console.log("burger status", status);
 
-    burger.update({
-        devoured: req.body.devoured
-    }, status, (results) => {
-        if (results.changedRows == 0) {
+    burger.update("devoured", status, "id".req.params.id, (result) => {
+        if (result.changedRows === 0) {
             return res.status(404).end();
-        } else {
-            res.status(200).end();
         }
-    })
+        res.status(200).end();
+    });
 });
 
 router.delete("/api/burger/:id", (req, res) => {
