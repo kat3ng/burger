@@ -1,53 +1,55 @@
+console.log(`ORM, ready for duty...`);
+
 const connection = require('./connection.js');
 // const server = require("./keys")
 
 let orm = {
-    select: (table, cb) => {
+    select: (table) => {
         let query = `SELECT * FROM ??`
 
         connection.query(query, [table], (err, results) => {
             if (err) {
                 throw err;
             }
-            cb(results);
-            console.log(`Displaying all burgers, captain...`)
+            console.log(`This is the ORM - displaying all burgers, captain...`)
+            // console.log(results);
         });
     },
 
-    create: (table, column, value, cb) => {
+    create: (table, column, value) => {
         let insertQuery = `INSERT INTO ?? (??) VALUES(?)`
 
-        connection.query(insertQuery, [table, column, value], (err, results) => {
+        connection.query(insertQuery, [table, column, value], (err, result) => {
             if (err) {
                 throw err;
             }
-            cb(results);
+            console.log(`This is the ORM - adding a burger to the database, captain...`)
+            console.log(result);
         });
-        console.log(`Adding a burger to the database, captain...`)
     },
 
-    update: (table, column, columnValue, id, value, cb) => {
+    update: (table, column, columnValue, id, value) => {
         let updateQuery = `UPDATE ?? SET ?? = ? WHERE ?? = ?`
 
-        connection.query(updateQuery, [table, column, columnValue, id, value], (err, results) => {
+        connection.query(updateQuery, [table, column, columnValue, id, value], (err, result) => {
             if (err) {
                 throw err;
             }
-            cb(results);
+            console.log(`This is the ORM - updating burgers_db for you, captain...`)
+            console.log(result);
         });
-        console.log(`Updating burgers_db for you, captain...`)
     },
 
-    delete: (table, column, value, cb) => {
+    delete: (table, column, value) => {
         let deleteQuery = `DELETE FROM ?? WHERE ?? = ?`
 
-        connection.query(deleteQuery, [table, column, id, value], (err, results) => {
+        connection.query(deleteQuery, [table, column, value], (err, result) => {
             if (err) {
                 throw err;
             }
-            cb(results);
+            console.log(`This is the ORM - activating delete sequence, captain...`)
+            console.log(result);
         });
-        console.log(`Activating delete sequence, captain...`)
     }
 }
 
@@ -55,6 +57,7 @@ let orm = {
 
 // select("burgers");
 // orm.create("burgers", "burger_name", "Whammy", "devoured", "TRUE");
-// orm.update("burgers", "burger_name", "McRibs", "id", "11");
+// orm.update("burgers", "burger_name", "McRibs", "id", "12");
+// orm.delete("burgers", "id", "11");
 
 module.exports = orm;

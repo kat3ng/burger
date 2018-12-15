@@ -1,23 +1,17 @@
 // REQUIRE MYSQL
 const mysql = require('mysql');
 
+const dotenv = require("dotenv").config();
 // CONNECT TO THE DATABASE
 let connection;
-// = mysql.createConnection({
-// host: 'localhost',
-// port: 8889,
-// user: "root",
-// password: "root",
-// database: 'burger_db',
-// });
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
     connection = mysql.createConnection({
         host: "localhost",
-        user: "root",
-        password: "root",
+        user: process.env.SERVER_ID,
+        password: process.env.SERVER_SECRET,
         database: "burger_db"
     })
 }
@@ -27,7 +21,7 @@ connection.connect((err) => {
         console.error("error connecting: " + err.stack);
         return;
     }
-    console.log("connected as id " + connection.threadId);
+    console.log("connection.js connected as id " + connection.threadId);
 });
 
 module.exports = connection;

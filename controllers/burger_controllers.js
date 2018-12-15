@@ -1,3 +1,5 @@
+console.log(`This is burger-controller, ready for duty...`)
+
 const express = require("express");
 const burger = require("../models/burger");
 const router = express.Router();
@@ -16,13 +18,14 @@ router.get("/", (req, res) => {
 
 router.post("/api/burger", (req, res) => {
     burger.create([
-        "burger", "devoured"
+        "burgers", "burger-name", "TRUE"
     ], [
         req.body.burger, req.body.devoured
     ], (results) => {
         res.json({
             id: results.insertID
         });
+        console.log(`ping! - create`);
     });
 });
 

@@ -2,8 +2,8 @@
 
 $(function () {
     $(".change-status").on("click", (event) => {
-        const id = $(this).data("id");
-        const newDevoured = $(this).data("newdevoured");
+        let id = $(this).data("id");
+        let newDevoured = $(this).data("newdevoured");
 
         const newDevouredState = {
             status: newDevoured
@@ -45,7 +45,7 @@ $(function () {
     });
 
     $(".delete-burger").on("click", (event) => {
-        const id = $(this).data("id");
+        let id = $(this).data("id");
 
         // Send the DELETE request.
         $.ajax("/api/burger/" + id, {
