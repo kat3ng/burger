@@ -4,7 +4,7 @@ const connection = require('./connection.js');
 // const server = require("./keys")
 
 const orm = {
-    select: (table) => {
+    select: (table, cb) => {
         let query = `SELECT * FROM ??`;
 
         connection.query(query, [table], (err, results) => {
@@ -12,7 +12,8 @@ const orm = {
                 throw err;
             }
             console.log(`This is the ORM - displaying all burgers, captain...`)
-            // console.log(results);
+            console.log(results);
+            cb(results);
         });
     },
 

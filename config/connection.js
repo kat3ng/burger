@@ -10,10 +10,12 @@ if (process.env.JAWSDB_URL) {
 } else {
     connection = mysql.createConnection({
         host: "localhost",
-        user: process.env.SERVER_ID,
-        password: process.env.SERVER_SECRET,
+        user: "root",
+        password: "root",
+        // user: process.env.SERVER_ID,
+        // password: process.env.SERVER_SECRET,
         port: 8889,
-        socket: "Applications/MAMP/tmp/mysql.sock",
+        // socket: "Applications/MAMP/tmp/mysql.sock",
         database: "burger_db"
     })
 }

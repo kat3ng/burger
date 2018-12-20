@@ -6,11 +6,11 @@ $(document).ready(() => {
             let id = $(this).data("id");
 
             let isEaten = {
-                devoured = true
+                devoured: true
             };
 
             // Send the PUT request.
-            $.ajax("/api/burger/" + id, {
+            $.ajax("/api/devour" + id, {
                 type: "PUT",
                 data: isEaten
             }).then(
@@ -18,16 +18,15 @@ $(document).ready(() => {
                     console.log("changed status to", isEaten);
                     // Reload the page to get the updated list
                     location.reload();
-                }
-            );
+                });
         });
 
-        $(".new-burger").on("submit", (event) => {
+        $(".burger").on("submit", (event) => {
             // Make sure to preventDefault on a submit event.
             event.preventDefault();
 
             let newBurger = {
-                name: $("#new-burger").val().trim(),
+                name: $("#burger").val().trim(),
             };
 
             // Send the POST request.
@@ -43,19 +42,20 @@ $(document).ready(() => {
             );
         });
 
-        $(".delete-burger").on("click", (event) => {
-            let id = $(this).data("id");
+        //Delete function
+        // $(".delete-burger").on("click", (event) => {
+        //     let id = $(this).data("id");
 
-            // Send the DELETE request.
-            $.ajax("/api/burger/" + id, {
-                type: "DELETE"
-            }).then(
-                () => {
-                    console.log("deleted burger", id);
-                    // Reload the page to get the updated list
-                    location.reload();
-                }
-            );
-        });
+        //     // Send the DELETE request.
+        //     $.ajax("/api/burger/" + id, {
+        //         type: "DELETE"
+        //     }).then(
+        //         () => {
+        //             console.log("deleted burger", id);
+        //             // Reload the page to get the updated list
+        //             location.reload();
+        //         }
+        //     );
+        // });
     });
 })

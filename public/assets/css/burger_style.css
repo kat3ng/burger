@@ -1,19 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Londrina+Outline');
-#col-left {
-    display: inline;
+
+.card {
+    display: inline-flex;
     /* float: left; */
-    max-width: 400px;
+    width: 300px;
 }
 
-#col-right {
-    display: inline;
-    /* float: right; */
-    max-width: 400px;
-}
 
-.container, div {
+.container,
+div {
     margin: 0 auto;
-    /* border: 1px solid black; */
+    border: 1px solid black;
     text-align: center
 }
 
@@ -38,6 +35,13 @@ header {
 }
 
 .sub-header {
+    color: red;
     font-family: 'Londrina Outline', cursive;
     margin: 0 auto;
+}
+
+ul,
+li {
+    display: inline-block;
+    list-style: none;
 }

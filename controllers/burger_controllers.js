@@ -6,16 +6,17 @@ const router = express.Router();
 const burger = require("../models/burger");
 
 // create all routes and set up logic within them
+// get all burgers
 router.get("/", (req, res) => {
     burger.select(function (data) {
         let hbsObject = {
             burger: data
         };
-        console.log(hbsObject);
         res.render("index", hbsObject);
     })
 });
 
+// create a burger
 router.post("/api/burger", (req, res) => {
     let newBurger = req.body.name;
 
@@ -29,9 +30,9 @@ router.post("/api/burger", (req, res) => {
 
 router.put("/api/burger/:id", (req, res) => {
     let status = Boolean(req.body.devoured);
-    console.log("burger status", status);
+    // console.log("burger status", status);
 
-    burger.update("devoured", status, "id".req.params.id, (result) => {
+    burger.update("devoured", status, "id", req.params.id, (result) => {
         if (result.changedRows === 0) {
             return res.status(404).end();
         }
@@ -39,17 +40,18 @@ router.put("/api/burger/:id", (req, res) => {
     });
 });
 
-router.delete("/api/burger/:id", (req, res) => {
-    let status = `id = ${req.params}`;
+// Delete route 
+// router.delete("/api/burger/:id", (req, res) => {
+//     let status = `id = ${req.params}`;
 
-    burger.delete(status, (results) => {
-        if (results.affectedRows == 0) {
-            return res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
-    });
-});
+//     burger.delete(status, (results) => {
+//         if (results.affectedRows == 0) {
+//             return res.status(404).end();
+//         } else {
+//             res.status(200).end();
+//         }
+//     });
+// });
 
 // Exports routes for server.js to use
 module.exports = router;

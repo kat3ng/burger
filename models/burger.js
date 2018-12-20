@@ -16,12 +16,12 @@ const burger = {
             cb(results);
         });
     },
-
-    delete: (status, cb) => {
-        orm.delete("burgers", status, (results) => {
-            cb(results);
-        });
-    }
+    //delete function for later versions
+    // delete: (status, cb) => {
+    //     orm.delete("burgers", status, (results) => {
+    //         cb(results);
+    //     });
+    // }
 }
 
 
