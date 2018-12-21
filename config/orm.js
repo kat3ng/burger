@@ -1,5 +1,3 @@
-console.log(`ORM, ready for duty...`);
-
 const connection = require('./connection.js');
 // const server = require("./keys")
 
@@ -12,12 +10,12 @@ const orm = {
                 throw err;
             }
             console.log(`This is the ORM - displaying all burgers, captain...`)
-            console.log(results);
+            // console.log(results);
             cb(results);
         });
     },
 
-    create: (table, column, value) => {
+    create: (table, column, value, cb) => {
         let insertQuery = `INSERT INTO ?? (??) VALUES(?)`
 
         connection.query(insertQuery, [table, column, value], (err, result) => {
@@ -25,7 +23,7 @@ const orm = {
                 throw err;
             }
             console.log(`This is the ORM - adding a burger to the database, captain...`)
-            console.log(result);
+            cb(result);
         });
     },
 
@@ -37,22 +35,23 @@ const orm = {
                 throw err;
             }
             console.log(`This is the ORM - updating burgers_db for you, captain...`)
-            console.log(result);
-        });
-    },
-
-    delete: (table, column, value) => {
-        let deleteQuery = `DELETE FROM ?? WHERE ?? = ?`
-
-        connection.query(deleteQuery, [table, column, value], (err, result) => {
-            if (err) {
-                throw err;
-            }
-            console.log(`This is the ORM - activating delete sequence, captain...`)
-            console.log(result);
+            cb(result);
         });
     }
-}
+
+
+    // delete: (table, column, value) => {
+    //     let deleteQuery = `DELETE FROM ?? WHERE ?? = ?`
+
+    //     connection.query(deleteQuery, [table, column, value], (err, result) => {
+    //         if (err) {
+    //             throw err;
+    //         }
+    //         console.log(`This is the ORM - activating delete sequence, captain...`)
+    //         console.log(result);
+    //     });
+    // }
+};
 
 
 

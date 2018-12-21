@@ -1,4 +1,4 @@
-console.log(`This is burger-controller, ready for duty...`)
+// console.log(`This is burger-controller, ready for duty...`)
 
 const express = require("express");
 const router = express.Router();
@@ -8,16 +8,18 @@ const burger = require("../models/burger");
 // create all routes and set up logic within them
 // get all burgers
 router.get("/", (req, res) => {
-    burger.select(function (data) {
+
+    burger.select((data) => {
         let hbsObject = {
             burger: data
         };
         res.render("index", hbsObject);
-    })
+    });
 });
 
 // create a burger
 router.post("/api/burger", (req, res) => {
+
     let newBurger = req.body.name;
 
     burger.create("burger_name", newBurger, (result) => {
@@ -25,10 +27,11 @@ router.post("/api/burger", (req, res) => {
             return res.status(404).end();
         }
         res.status(200).end();
-    })
+    });
 });
 
 router.put("/api/burger/:id", (req, res) => {
+
     let status = Boolean(req.body.devoured);
     // console.log("burger status", status);
 

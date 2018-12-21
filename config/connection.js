@@ -1,7 +1,7 @@
 // REQUIRE MYSQL
 const mysql = require('mysql');
+require("dotenv").config();
 
-const dotenv = require("dotenv").config();
 // CONNECT TO THE DATABASE
 let connection;
 

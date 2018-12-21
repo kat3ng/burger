@@ -10,7 +10,7 @@ $(document).ready(() => {
             };
 
             // Send the PUT request.
-            $.ajax("/api/devour" + id, {
+            $.ajax("/api/burger/" + id, {
                 type: "PUT",
                 data: isEaten
             }).then(
@@ -21,12 +21,12 @@ $(document).ready(() => {
                 });
         });
 
-        $(".burger").on("submit", (event) => {
+        $("#burgers").on("submit", (event) => {
             // Make sure to preventDefault on a submit event.
             event.preventDefault();
 
             let newBurger = {
-                name: $("#burger").val().trim(),
+                name: $("#burgers").val().trim(),
             };
 
             // Send the POST request.
