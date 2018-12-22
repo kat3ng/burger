@@ -26,8 +26,9 @@ $(document).ready(() => {
             event.preventDefault();
 
             let newBurger = {
-                name: $("#burgers").val().trim(),
+            name: $("#name").val().trim()
             };
+            console.log(name);
 
             // Send the POST request.
             $.ajax("/api/burger", {
@@ -42,20 +43,19 @@ $(document).ready(() => {
             );
         });
 
-        //Delete function
-        // $(".delete-burger").on("click", (event) => {
-        //     let id = $(this).data("id");
+        $(".delete-burger").on("click", (event) => {
+            let id = $(this).data("id");
 
-        //     // Send the DELETE request.
-        //     $.ajax("/api/burger/" + id, {
-        //         type: "DELETE"
-        //     }).then(
-        //         () => {
-        //             console.log("deleted burger", id);
-        //             // Reload the page to get the updated list
-        //             location.reload();
-        //         }
-        //     );
-        // });
+            // Send the DELETE request.
+            $.ajax("/api/burger/" + id, {
+                type: "DELETE"
+            }).then(
+                () => {
+                    console.log("deleted burger", id);
+                    // Reload the page to get the updated list
+                    location.reload();
+                }
+            );
+        });
     });
 })
