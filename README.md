@@ -9,6 +9,7 @@
 
 For this assignment I built a full-stack burger logging app that takes user input and interaction with the DOM to manipulate information in the database.  
 
+![readme](/public/assets/img/bobs.png)
 
 ## How it Works
 
