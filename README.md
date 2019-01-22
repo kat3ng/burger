@@ -13,7 +13,14 @@ For this assignment I built a full-stack burger logging app that takes user inpu
 
 ## How it Works
 
- The app uses Node and MySQL to query and route data in the app, and Handlebars to generate the HTML.  
+ 1. The app uses HTML, CSS and Handlebars as a framework for the front end design and behavior. 
+ 
+ 2. The middleware, aka the routes and the ORM dictate where and how the app interacts with the mySQL database.
+ 
+ 
+ ## Notes
+ This app is currently at a 90% done status, where I was able to connect the database and get the HTML displayed. While users can add burgers to the datbase, they are not able to remove them at the moment.  I will probably take time in the next few weeks to work through this. 
+  
 
 
 
